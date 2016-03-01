@@ -17,5 +17,4 @@ describe('groupByDigits unit test', function() {
     it('convert 123456789 to [123, 456, 789]', function() {
         expect(groupByDigits(123456789)).toBe([123, 456, 789]);
     });
-
 });
