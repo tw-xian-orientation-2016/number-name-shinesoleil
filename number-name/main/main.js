@@ -23,7 +23,7 @@ function getTens() {
 }
 
 function getThousands() {
-  return ['', 'thousand', 'million'];
+  return ['', ' thousand', ' million'];
 }
 
 function convertDecade(lastTwoDigits, ones, tens) {
@@ -50,3 +50,21 @@ function convertNumbers(digitsGroups, ones, tens) {
     return convertNumber(digitsGroup, ones, tens);
   })
 }
+
+function containHundred(numStr) {
+  return numStr.indexOf('hundred') !== -1;
+}
+
+function addUnit(numStrGroups, thousands) {
+  var reverseNumStrs = numStrGroups.reverse();
+  for(var i=0; i<reverseNumStrs.length; i++) {
+    reverseNumStrs[i] += thousands[i];
+    if(reverseNumStrs[i-1] && containHundred(reverseNumStrs[i-1])) {
+      reverseNumStrs[i] += ',';
+    } else if (reverseNumStrs[i-1]){
+      reverseNumStrs[i] += ' and';
+    }
+  }
+  return reverseNumStrs.reverse();
+}
+
